@@ -10,7 +10,7 @@ class SavingProduct(models.Model):
     pre_tax_interest_rate = models.FloatField()  # 세전이자율
     post_tax_interest_rate = models.FloatField() # 세후이자율
     max_preference_rate = models.FloatField()    # 최고우대금리
-    eligibility = models.CharField(max_length=20)      # 가입대상(제한없음/.. )
+    eligibility = models.CharField(max_length=20)      # 가입대상(제한없음/../ )
     interest_calculation_method = models.CharField(max_length=10)   # 이자계산방식(단리/복리)
     inquiry_info = models.CharField(max_length=200)                 # 금융상품문의
     comparison_disclosure_date = models.DateField()                 # 비교공시일
