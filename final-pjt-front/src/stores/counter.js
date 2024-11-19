@@ -13,10 +13,12 @@ export const useCalendarStore = defineStore("dateStore", {
   }
 });
 
+
 export const useSavingStore = defineStore("saving", {
   state: () => ({
     API_URL: "http://127.0.0.1:8000/savings",
     products: [],
+    recommendedSavings: [],
     loading: false,
     error: null,
     currentSearchParams: {},
@@ -90,6 +92,20 @@ export const useSavingStore = defineStore("saving", {
         .split(";")
         .find((cookie) => cookie.trim().startsWith("csrftoken="))
         ?.split("=")[1] || '';
+    },
+
+    async fetchRecommendedSavings() {
+      this.loading = true;
+      this.error = null;
+      try {
+        const response = await axios.get(`${this.API_URL}/recommend/`);
+        this.recommendedSavings = response.data;
+      } catch (error) {
+        console.error("Error fetching recommended savings:", error);
+        this.error = "추천 적금 상품을 불러오는데 실패했습니다.";
+      } finally {
+        this.loading = false;
+      }
     }
   }
 });
