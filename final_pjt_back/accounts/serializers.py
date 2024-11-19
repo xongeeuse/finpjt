@@ -19,6 +19,7 @@ class UserSerializer(serializers.ModelSerializer):
         user.save()
         return user
     
+
 class LoginSerializer(serializers.Serializer):
     username = serializers.CharField(required=True)
     password = serializers.CharField(required=True)
@@ -32,5 +33,15 @@ class LoginSerializer(serializers.Serializer):
 
             if user is None:
                 raise serializers.ValidationError('Invalid login credentials')
+        
         data['user'] = user
         return data
+
+
+    def to_representation(self, instance):
+        user = instance['user']
+        return {
+            'id': user.id,
+            'username': user.username,
+            'nickname': user.nickname
+        }

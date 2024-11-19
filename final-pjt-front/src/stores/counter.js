@@ -1,6 +1,7 @@
 import { ref, computed } from "vue";
 import { defineStore } from "pinia";
 import axios from "axios";
+import { useRouter } from "vue-router";
 
 export const useCalendarStore = defineStore("dateStore", {
   state: () => ({
@@ -66,9 +67,34 @@ export const useSavingStore = defineStore("saving", {
   },
 });
 
-export const useAccountStore = defineStore('account', {
-  state: () => ({
-    API_URL: 'http://127.0.0.1:8000/'
+export const useAccountStore = defineStore('accountStore', () => {
+  const API_URL = 'http://127.0.0.1:8000'
+  const token = ref(null)
+
+  const isLogin = computed(() => {
+    if (token.value === null) {
+      return false
+    } else {
+      return true
+    }
   })
+
+  const login = async function (payload) {
+    const { username, password } = payload
+
+    try {
+      const response = await axios.post(`${API_URL}/accounts/login/`, {
+        username,
+        password,
+      });
+      
+      token.value = response.data.key;
+      console.log('로그인 성공');
+    } catch (error) {
+      console.error('로그인 실패:', error.message);
+    }
+  }
+
+  return { API_URL, token, isLogin, login }
 })
 
