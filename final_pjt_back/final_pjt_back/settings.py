@@ -33,6 +33,9 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'accounts',
     'savings',
+    'posts',
+    'quizzes',
+    'fortune',
     'drf_spectacular',
     'django.contrib.admin',
     'django.contrib.auth',
