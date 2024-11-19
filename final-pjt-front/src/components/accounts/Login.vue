@@ -18,9 +18,10 @@ import { useAccountStore } from '@/stores/counter'
 
 const accountStore = useAccountStore()
 
-const username = ref(null)
-const password = ref(null)
+const username = ref('')
+const password = ref('')
 
+// emit을 사용하여 부모 컴포넌트에 이벤트 전달 (모달 닫기)
 const emit = defineEmits(['closeModal'])
 
 const login = async function() {
@@ -29,12 +30,12 @@ const login = async function() {
     password: password.value
   }
   
-  // 로그인 액션 호출
+  // Pinia 스토어의 login 액션 호출
   await accountStore.login(payload)
 
   // 로그인 성공 시 모달 닫기
   if (accountStore.isLogin) {
-    emit('closeModal')
+    emit('closeModal') // 부모에게 모달 닫기 이벤트 전달
   }
 }
 </script>
