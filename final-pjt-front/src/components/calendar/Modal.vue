@@ -31,6 +31,7 @@
 <script setup>
 import { defineProps, defineEmits, ref, onMounted } from "vue";
 import api from "@/stores/api";
+// import { Comment } from "@/Comment"
 
 const props = defineProps({
   date: String

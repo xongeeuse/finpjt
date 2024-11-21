@@ -55,6 +55,10 @@ def post_list(request):
     return Response(serializer.data)
 
 
+@api_view(['POST'])
+def create_comment(request):
+    pass
+
 def is_post_owner(login_user, post_owner):
     if login_user == post_owner:
         return True

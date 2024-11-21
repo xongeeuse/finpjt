@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Category, Post, PostLike, Commnet
+from .models import Category, Post, PostLike, Comment
 from accounts.serializers import UserSerializer
 
 
@@ -37,7 +37,7 @@ class CommentSerializer(serializers.ModelSerializer):
     post = PostSerializer(read_only=True)
 
     class Meta:
-        model = Commnet
+        model = Comment
         fields = '__all__'
 
 class CalendarMainSerializer(serializers.ModelSerializer):
