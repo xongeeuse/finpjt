@@ -24,8 +24,6 @@ def create_post(request):
 @permission_classes([IsAuthenticated])
 def detail_post(request):
     date = request.GET.get('date')
-    # user_pk = request.GET.get('user_pk')
-    # print(user_pk)
     post = get_list_or_404(Post, expenses_date=date)
 
     if request.method == 'GET':
@@ -131,6 +129,22 @@ def delete_comment(request, comment_id):
 
         comment.delete()
         return Response({'msg': '댓글 삭제 완료'}, status=status.HTTP_200_OK)
+    except Exception as e:
+        return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+def delete_post(request, post_id):
+    try:
+        post = get_object_or_404(Post, id=post_id)
+
+        if not is_owner(request.user, post.user):
+            return Response({'error': '게시글 작성자만 삭제할 수 있습니다.'}, status=status.HTTP_403_FORBIDDEN)
+
+        post.delete()
+        return Response({'message': '게시글이 삭제되었습니다.'}, status=status.HTTP_200_OK)
+
     except Exception as e:
         return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 

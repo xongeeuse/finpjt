@@ -50,28 +50,28 @@ const fetchComments = async () => {
         expenses_date: currentDate,
         author_user_pk: author_user_pk,
       },
-    });
+    })
 
     // 댓글 데이터에 isEditing과 newContent 추가
     commentList.value = response.data.map(comment => ({
       ...comment,
       isEditing: false, // 수정 상태 여부
       newContent: comment.content, // 기존 내용을 기본값으로 설정
-    }));
+    }))
   } catch (error) {
     console.error("댓글 목록 가져오기 중 오류 발생:", error);
   }
-};
+}
 
 onMounted(() => {
-  fetchComments();
-});
+  fetchComments()
+})
 
 // 댓글 추가
 const addComment = async () => {
   if (content.value.trim() === "") {
     alert("댓글을 입력해주세요.");
-    return;
+    return
   }
 
   try {
@@ -79,90 +79,65 @@ const addComment = async () => {
       expenses_date: currentDate,
       content: content.value,
       author_user_pk: author_user_pk,
-    });
+    })
 
     // 새로 작성된 댓글 추가
     commentList.value.push({
       ...response.data,
       isEditing: false,
       newContent: response.data.content, // 새 댓글의 기본값 설정
-    });
+    })
 
-    content.value = ""; // 입력 필드 초기화
+    content.value = "" // 입력 필드 초기화
   } catch (error) {
-    console.error("댓글 작성 중 오류 발생:", error);
+    console.error("댓글 작성 중 오류 발생:", error)
   }
-};
+}
 
 // 수정 상태 활성화
 const enableEdit = (comment) => {
-  comment.isEditing = true; // 수정 상태로 전환
-};
+  comment.isEditing = true // 수정 상태로 전환
+}
 
 // 수정 상태 취소
 const cancelEdit = (comment) => {
   comment.isEditing = false; // 수정 상태 해제
   comment.newContent = comment.content; // 원래 내용 복원
-};
+}
 
 // 댓글 수정
 const updateComment = async (commentId, newContent) => {
   if (!newContent.trim()) {
     alert("수정할 내용을 입력해주세요.");
-    return;
+    return
   }
 
   try {
     const response = await api.put(`/posts/update-comment/${commentId}/`, {
       content: newContent,
-    });
+    })
 
-    const index = commentList.value.findIndex(comment => comment.id === commentId);
+    const index = commentList.value.findIndex(comment => comment.id === commentId)
     if (index !== -1) {
       // 서버에서 반환된 데이터로 업데이트
-      commentList.value[index].content = response.data.content;
-      commentList.value[index].isEditing = false; // 수정 상태 해제
+      commentList.value[index].content = response.data.content
+      commentList.value[index].isEditing = false
     }
   } catch (error) {
-    console.error("댓글 수정 중 오류 발생:", error);
+    console.error("댓글 수정 중 오류 발생:", error)
   }
-};
+}
 
-// 댓글 삭제
+
 const deleteComment = async (commentId) => {
-  if (!confirm("정말로 이 댓글을 삭제하시겠습니까?")) return;
+  if (!confirm("정말로 이 댓글을 삭제하시겠습니까?")) return
 
   try {
-    await api.delete(`/posts/delete-comment/${commentId}/`);
+    await api.delete(`/posts/delete-comment/${commentId}/`)
 
-    // 목록에서 해당 댓글 제거
-    commentList.value = commentList.value.filter(comment => comment.id !== commentId);
+    commentList.value = commentList.value.filter(comment => comment.id !== commentId)
   } catch (error) {
-    console.error("댓글 삭제 중 오류 발생:", error);
+    console.error("댓글 삭제 중 오류 발생:", error)
   }
-};
+}
 </script>
-<style scoped>
-/* 기본 스타일 */
-form {
-  margin-bottom: 20px;
-}
-
-input[type="text"] {
-  padding: 8px;
-  width: calc(100% - 16px);
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  margin-bottom: 10px;
-}
-
-button {
-  margin-left: 5px;
-}
-</style>
