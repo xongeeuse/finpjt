@@ -24,7 +24,7 @@
           </li>
         </ul>
       </main>
-      <Comment :date="props.date"/>
+      <Comment v-if="posts.length > 0" :date="props.date" :author_user_pk="posts[0]?.user_pk"/>
     </div>
   </div>
 </template>
@@ -54,11 +54,13 @@ const fetchPosts = async () => {
 
   try {
     const response = await api.get(`/posts/detail-post/`, {
-      params: { date: props.date }
+      params: { 
+        date: props.date,
+      }
     })
     posts.value = response.data;
+    // console.log(response.data)
 
-    // console.log(posts.value)
   } catch (err) {
     error.value = "게시글을 불러오는 데 실패했습니다. 다시 시도해주세요."
   } finally {
@@ -90,7 +92,7 @@ onMounted(() => {
   background-color:white; 
   padding :20px; 
   border-radius :8px; 
-  max-width :500px; 
+  max-width :650px; 
   width :100%; 
 }
 
