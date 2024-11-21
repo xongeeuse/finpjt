@@ -6,7 +6,7 @@
         <label for="username">아이디:</label>
         <input id="username" :value="accountStore.user?.username" disabled />
       </div>
-      <div>
+      <!-- <div>
         <label for="profile_image">프로필 이미지:</label>
         <img
           v-if="profile.previewImage"
@@ -15,7 +15,7 @@
           style="max-width: 100px; max-height: 100px"
         />
         <input id="profile_image" type="file" @change="onFileChange" />
-      </div>
+      </div> -->
       <div>
         <label for="nickname">닉네임:</label>
         <input id="nickname" v-model="profile.nickname" type="text" required />
@@ -37,10 +37,10 @@
           step="0.01"
         />
       </div>
-      <div>
+      <!-- <div>
         <label for="point">포인트:</label>
         <input id="point" :value="accountStore.user?.point" disabled />
-      </div>
+      </div> -->
       <button type="submit">프로필 업데이트</button>
     </form>
   </section>
@@ -101,3 +101,4 @@ const updateProfile = async () => {
   }
 };
 </script>
+<style scoped></style>
