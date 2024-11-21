@@ -27,14 +27,13 @@
             sunday: date.weekOffset === 0,
             saturday: date.weekOffset === 6,
           }"
-          @click.prevent="toggleDetailModal(date)"
         >
           <!-- 날짜 표시 -->
           <span class="date" @click.stop="goToNewPost(date)">
             {{ date.date }}
           </span>
           <div v-if="getImageForDate(date)" class="post-image">
-            <img :src="getImageForDate(date)" alt="Post Image" />
+            <img :src="getImageForDate(date)" alt="Post Image" @click.prevent="toggleDetailModal(date)"/>
           </div>
         </div>
       </div>

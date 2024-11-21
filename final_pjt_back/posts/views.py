@@ -21,27 +21,28 @@ def create_post(request):
         
 
 @api_view(['GET', 'DELETE', 'PUT'])
-def detail_post(request, post_pk):
-    post = get_object_or_404(Post, pk=post_pk)
+def detail_post(request, date):
+    post = get_object_or_404(Post, expenses_date=date)
+    print(date)
 
     if request.method == 'GET':
         serializer = PostSerializer(post)
 
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-    if is_post_owner(request.user, post.user):
-        if request.method == 'PUT':
-            serializer = PostSerializer(post, data=request.data, partial=True)
+    # if is_post_owner(request.user, post.user):
+    #     if request.method == 'PUT':
+    #         serializer = PostSerializer(post, data=request.data, partial=True)
 
-            if serializer.is_valid(raise_exception=True):
-                serializer.save(user=request.user)
+    #         if serializer.is_valid(raise_exception=True):
+    #             serializer.save(user=request.user)
 
-                return Response(serializer.data, status=status.HTTP_200_OK)
-        elif request.method == 'DELETE':
-            post.delete()
-            return Response({'msg' : '게시글 삭제 완료'}, status=status.HTTP_200_OK)
-    else:
-        return Response({'msg': '게시글 주인이 아님'})
+    #             return Response(serializer.data, status=status.HTTP_200_OK)
+    #     elif request.method == 'DELETE':
+    #         post.delete()
+    #         return Response({'msg' : '게시글 삭제 완료'}, status=status.HTTP_200_OK)
+    # else:
+    #     return Response({'msg': '게시글 주인이 아님'})
 
 @api_view(['GET'])
 def post_list(request):
