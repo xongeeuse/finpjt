@@ -52,3 +52,20 @@ class CalendarMainSerializer(serializers.ModelSerializer):
         if obj.image and hasattr(obj.image, 'url'):
             return obj.image.url
         return None
+    
+
+class PostDetailSerializer(serializers.ModelSerializer):
+    image = serializers.SerializerMethodField()
+    category_name = serializers.ReadOnlyField(source='category.category_name')
+    username = serializers.CharField(source='user.username', read_only=True)
+
+    class Meta:
+        model = Post
+        fields = ['id', 'username', 'expenses_date', 'image', 'content', 'category_name', 'created_at', 'updated_at']
+
+    def get_image(self, obj):
+        if obj.image:
+            request = self.context.get('request')
+
+            return request.build_absolute_uri(obj.image.url)
+        return None
