@@ -3,6 +3,7 @@ from .models import Category, Post, PostLike, Comment
 from accounts.models import Budget
 from accounts.serializers import UserSerializer
 from datetime import datetime
+from django.db.models import Sum
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -52,23 +53,38 @@ class CalendarMainSerializer(serializers.ModelSerializer):
     image = serializers.SerializerMethodField()
     username = serializers.CharField(source='user.username', read_only=True)
     owner = serializers.IntegerField(source='user.pk', read_only=True)
-    amount = serializers.SerializerMethodField()
+    amount = serializers.SerializerMethodField()        # 예산
+    total_month_spending = serializers.SerializerMethodField()
 
     class Meta:
         model = Post
-        fields = ['id', 'username', 'owner', 'expenses_date', 'image', 'amount']
+        fields = ['id', 'username', 'owner', 'expenses_date', 'image', 'amount', 'total_month_spending']
 
     def get_image(self, obj):
         if obj.image and hasattr(obj.image, 'url'):
             return obj.image.url
         return None
     
-    def get_amount(self, obj):
-        # 해당 유저와 연월에 맞는 Budget 데이터를 가져옴
-        year = obj.expenses_date.year
-        month = obj.expenses_date.month
-        budget = Budget.objects.filter(user=obj.user, year=year, month=month).first()
-        return budget.amount if budget else 0  # 예산이 없으면 0 반환
+    
+    # def get_total_month_spending(self, obj):
+    #     # 해당 유저와 연월에 해당하는 모든 Post의 price 합산
+    #     year = obj.expenses_date.year
+    #     month = obj.expenses_date.month
+    #     total_spending = Post.objects.filter(
+    #         user=obj.user,
+    #         expenses_date__year=year,
+    #         expenses_date__month=month
+    #     ).aggregate(total_price=Sum('price'))['total_price']
+    #     return total_spending or 0
+    
+
+    # def get_total_spending(self, obj):
+    #     # 같은 날짜의 소비 총액 계산
+    #     total_spending = Post.objects.filter(
+    #         user=obj.user,
+    #         expenses_date=obj.expenses_date
+    #     ).aggregate(total_price=Sum('price'))['total_price']
+    #     return total_spending or 0  # 값이 없으면 0 반환
     
 
 class PostDetailSerializer(serializers.ModelSerializer):
