@@ -1,25 +1,35 @@
 <template>
-  <div>
-    <h1>회원가입</h1>
-    <form @submit.prevent="signup">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" v-model.trim="username" required><br><br>
+  <div class="signup-container">
+    <h1 class="form-title">회원가입</h1>
+    <form @submit.prevent="signup" class="signup-form">
+      <div class="form-group">
+        <label for="username">아이디</label>
+        <input type="text" id="username" v-model.trim="username" required>
+      </div>
 
-        <label for="password1">Password:</label>
-        <input type="password" id="password1" name="password1" v-model.trim="password1" required><br><br>
+      <div class="form-group">
+        <label for="password1">비밀번호</label>
+        <input type="password" id="password1" v-model.trim="password1" required>
+      </div>
 
-        <label for="password2">Confirm Password:</label>
-        <input type="password" id="password2" name="password2" v-model.trim="password2" required><br><br>
+      <div class="form-group">
+        <label for="password2">비밀번호 확인</label>
+        <input type="password" id="password2" v-model.trim="password2" required>
+      </div>
 
-        <label for="nickname">Nickname:</label>
-        <input type="text" id="nickname" name="nickname" v-model.trim="nickname" required><br><br>
+      <div class="form-group">
+        <label for="nickname">닉네임</label>
+        <input type="text" id="nickname" v-model.trim="nickname" required>
+      </div>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" v-model.trim="email" required><br><br>
+      <div class="form-group">
+        <label for="email">이메일</label>
+        <input type="email" id="email" v-model.trim="email" required>
+      </div>
 
-        <input type="submit" value="회원가입"></input>
+      <button type="submit" class="submit-button">회원가입</button>
     </form>
-</div>
+  </div>
 </template>
 
 <script setup>
@@ -49,5 +59,65 @@ const signup = function () {
 </script>
 
 <style scoped>
+.signup-container {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+}
 
+.form-title {
+  color: #2E8B57;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2em;
+}
+
+.signup-form {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  color: #2E8B57;
+  font-weight: 500;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1em;
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: #2E8B57;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #2E8B57;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #1a5235;
+  transform: translateY(-2px);
+}
 </style>

@@ -162,109 +162,57 @@ const search = () => {
 <style scoped>
 .search-form {
   background-color: #f8f9fa;
-  padding: 20px;
-  border-radius: 5px;
-  margin-bottom: 20px;
-}
-
-.search-row {
-  margin-bottom: 20px;
-}
-
-.amount-input {
-  position: relative;
-}
-
-.input-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 5px;
+  padding: 25px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 input[type="number"] {
   width: 200px;
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.unit {
-  color: #666;
-}
-
-.hint {
-  font-size: 0.8em;
-  color: #666;
-  margin-left: 5px;
-}
-
-.period-buttons,
-.option-buttons {
-  display: flex;
-  gap: 10px;
-  margin-top: 8px;
+  padding: 10px;
+  border: 2px solid #2E8B57;
+  border-radius: 8px;
+  font-size: 1em;
 }
 
 .period-btn,
 .option-btn {
-  padding: 8px 16px;
-  border: 1px solid #ddd;
+  padding: 10px 20px;
+  border: 2px solid #2E8B57;
   background-color: white;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s ease;
+  color: #2E8B57;
 }
 
 .period-btn.active,
 .option-btn.active {
-  background-color: #bedc74;
+  background-color: #2E8B57;
   color: white;
-  border-color: #bedc74;
-}
-
-.period-btn:hover,
-.option-btn:hover {
-  background-color: #e9ecef;
-}
-
-.period-btn.active:hover,
-.option-btn.active:hover {
-  background-color: #bedc74;
-}
-
-.total-amount {
-  margin: 20px 0;
-  padding: 15px;
-  background-color: #f8f9fa;
-  border-radius: 4px;
-  border: 1px solid #ddd;
-}
-
-.amount-display {
-  font-size: 1.2em;
-  font-weight: bold;
-  color: #333;
-  margin-top: 5px;
 }
 
 .search-button {
-  background-color: #bedc74;
+  background-color: #2E8B57;
   color: white;
-  padding: 10px 20px;
+  padding: 12px 24px;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
   width: 100%;
   font-size: 1.1em;
+  transition: all 0.3s ease;
 }
 
 .search-button:hover {
-  background-color: #bedc74;
+  background-color: #1a5235;
+  transform: translateY(-2px);
 }
 
 label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: bold;
+  color: #2E8B57;
+  font-weight: 600;
+  margin-bottom: 10px;
 }
 </style>
