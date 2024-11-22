@@ -65,22 +65,35 @@ def detail_post(request):
 def post_list(request):
     # GET 요청으로 전달받은 yearMonth 값
     year_month = request.query_params.get('yearMonth')
-    print("현재 날짜!!!!!!!!!!!!! ", year_month)
+    # print("현재 날짜!!!!!!!!!!!!! ", year_month)
     if not year_month:
         return Response({"error": "yearMonth parameter is required"}, status=400)
 
     # 현재 유저의 Post 중 expenses_date가 year_month로 시작하는 데이터 필터링
     user_posts = Post.objects.filter(user=request.user, expenses_date__startswith=year_month)
 
-    # price 칼럼 값 합산
+    # 전체 price 칼럼 값 합산
     total_price = user_posts.aggregate(total_price=Sum('price'))['total_price'] or 0
+
+    # 모든 카테고리를 가져옴
+    all_categories = Category.objects.all()
+
+    # 카테고리별 price 합산 (없으면 기본값 0)
+    category_totals = []
+    for category in all_categories:
+        category_total = user_posts.filter(category=category).aggregate(total_price=Sum('price'))['total_price'] or 0
+        category_totals.append({
+            "category_name": category.category_name,
+            "total_price": category_total
+        })
 
     # 직렬화된 데이터 반환
     serializer = CalendarMainSerializer(user_posts, many=True)
 
     response_data = {
         "posts": serializer.data,
-        "total_price": total_price  # 합산된 가격 추가
+        "total_price": total_price,  # 전체 합산된 가격 추가
+        "category_totals": category_totals,  # 모든 카테고리 포함한 합계 추가
     }
     
     return Response(response_data)

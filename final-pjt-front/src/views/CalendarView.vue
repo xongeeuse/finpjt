@@ -8,7 +8,11 @@
         <input type="submit" value="설정">
       </form>
       <span>{{ cal.monthText }}월 총 소비 금액 : {{ total_price }}</span>
-      <p>카테고리별 소비 금액 : </p>
+      <div v-for="categoryValue in categorySumValue" :key="categoryValue.id">
+        <p>{{ categoryValue.category_name }} : {{ categoryValue.total_price }} 비율 : {{ (Math.round((categoryValue.total_price / total_price) * 100 * 100) / 100).toFixed(2) }}%</p>
+      </div>
+
+
       <h3>{{ cal.yearText }} - {{ cal.monthText }}</h3>
       <div class="navs">
         <button @click="prevMonth">이전</button>
@@ -80,12 +84,13 @@ const posts = ref([])   // 게시글 데이터
 const calendarOwnerId = ref(0)    // 캘린더 주인 pk
 const amount = ref(0)
 const total_price = ref(0)
+const categorySumValue = ref([])
 
 // 이전 달로 이동
 const prevMonth = () => {
     cal.value = cal.value.prevMonth();
     const yearMonth = cal.value.yearText + '-' + cal.value.monthText;
-    console.log(`${yearMonth}`);
+    // console.log(`${yearMonth}`);
 
     fetchPosts(yearMonth); // API 호출
 };
@@ -94,7 +99,7 @@ const prevMonth = () => {
 const nextMonth = () => {
     cal.value = cal.value.nextMonth();
     const yearMonth = cal.value.yearText + '-' + cal.value.monthText
-    console.log(`다음 달: ${yearMonth}`)
+    // console.log(`다음 달: ${yearMonth}`)
 
     fetchPosts(yearMonth)
 }
@@ -130,9 +135,15 @@ const fetchPosts = (yearMonth) => {
         params: { yearMonth }
     })
     .then((response) => {
-        console.log(response.data.total_price)
+        // console.log(response.data)
+        const categoryData = response.data.category_totals
         const postsData = response.data.posts || []
+        // console.log(response.data.category_totals)
+
         posts.value = postsData
+        categorySumValue.value = categoryData
+
+        // console.log(categorySumValue.value)
 
         if (postsData.length > 0) {
         calendarOwnerId.value = postsData[0].owner || 0
@@ -170,8 +181,8 @@ const getImageForDate = (date) => {
 
 const submitBudget = async () => {
   try {
-    console.log("현재 연도:", cal.value.yearText);
-    console.log("현재 월:", cal.value.monthText);
+    // console.log("현재 연도:", cal.value.yearText);
+    // console.log("현재 월:", cal.value.monthText);
     const data= {
       year: parseInt(cal.value.yearText),
       month: parseInt(cal.value.monthText),
@@ -182,7 +193,7 @@ const submitBudget = async () => {
     if (response.status === 201 || response.status === 200) {
       alert("예산 저장 성공")
       amount.value = response.data.amount
-      console.log(response.data)
+      // console.log(response.data)
     } else {
       alert("예산 저장 실패")
     }
