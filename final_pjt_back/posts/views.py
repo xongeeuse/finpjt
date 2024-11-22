@@ -14,7 +14,7 @@ from rest_framework.permissions import IsAuthenticated
 def create_post(request):
     if request.method == 'POST':
         serializer = PostSerializer(data=request.data)
-        # print(request.data)
+        print(request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save(user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
