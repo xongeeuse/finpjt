@@ -8,6 +8,7 @@
         <input type="submit" value="설정">
       </form>
       <span>{{ cal.monthText }}월 총 소비 금액 : {{ total_price }}</span>
+      <p>카테고리별 소비 금액 : </p>
       <h3>{{ cal.yearText }} - {{ cal.monthText }}</h3>
       <div class="navs">
         <button @click="prevMonth">이전</button>
@@ -77,7 +78,7 @@ const dateStore = useCalendarStore();
 
 const posts = ref([])   // 게시글 데이터
 const calendarOwnerId = ref(0)    // 캘린더 주인 pk
-const amount = ref(null)
+const amount = ref(0)
 const total_price = ref(0)
 
 // 이전 달로 이동
@@ -129,20 +130,26 @@ const fetchPosts = (yearMonth) => {
         params: { yearMonth }
     })
     .then((response) => {
-        // console.log('게시글 데이터:', response.data)
-        // console.log('게시글 데이터:', response.data[0].calendar_ownerId)
-        // console.log(response.data.posts)
         console.log(response.data.total_price)
-        posts.value = response.data.posts // 게시글 데이터를 상태에 저장
+        const postsData = response.data.posts || []
+        posts.value = postsData
 
-        // console.log(response.posts)
-        // console.log(response.total_price)
-        calendarOwnerId.value = response.data.posts[0].owner
-        amount.value = response.data.posts[0].amount
-        total_price.value = response.data.total_price
+        if (postsData.length > 0) {
+        calendarOwnerId.value = postsData[0].owner || 0
+        amount.value = postsData[0].amount || 0
+      } else {
+        calendarOwnerId.value = 0
+        amount.value = 0
+      }
+
+      total_price.value = response.data.total_price || 0
     })
     .catch((error) => {
-        console.error('API 요청 실패:', error)
+      console.error('API 요청 실패:', error)
+      posts.value = []
+      calendarOwnerId.value = 0
+      amount.value = 0
+      total_price.value = 0
     })
 }
 
