@@ -6,7 +6,7 @@
       <RouterLink class="nav-link" :to="{ name: 'SavingView' }">적금</RouterLink>
       <RouterLink class="nav-link" :to="{ name: 'FortuneView' }">운세</RouterLink>
       <RouterLink class="nav-link" :to="{ name: 'QuizView' }">퀴즈</RouterLink>
-      <RouterLink class="nav-link" :to="{ name: 'MyPageView' }">마이페이지</RouterLink>
+      <RouterLink class="nav-link" :to="{ name: 'profile' }">마이페이지</RouterLink>
     </div>
 
     <div class="auth-section">
@@ -25,8 +25,8 @@
 
   <div v-if="isLoginModalOpen" class="modal-overlay" @click="toggleLoginModal">
     <div class="modal-content" @click.stop>
+      <button class="close-icon" @click="toggleLoginModal">×</button> <!-- X 아이콘 추가 -->
       <Login @closeModal="toggleLoginModal" />
-      <button class="close-btn" @click="toggleLoginModal">닫기</button>
     </div>
   </div>
 </template>
@@ -146,7 +146,25 @@ const logOut = () => {
   align-items: center; /* 중앙 정렬 */
 }
 
+/* X 아이콘 스타일 */
+.close-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2e8b57; /* 로고 색상과 통일 */
+  cursor: pointer;
+}
+
+.close-icon:hover {
+  color: #1a5235; /* 호버 시 색상 변경 */
+}
+
 .modal-content {
+  position: relative; /* 닫기 버튼 위치를 위해 필요 */
   width: min(90%, 400px); /* 화면 크기에 따라 최대 너비 제한 */
   background-color: white;
   padding: 30px;
