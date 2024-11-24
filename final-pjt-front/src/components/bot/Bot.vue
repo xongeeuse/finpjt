@@ -1,6 +1,9 @@
 <template>
   <div id="app">
     <div class="chat-container">
+      <div class="close-button">
+        <button @click="goToFortuneView">X</button>
+      </div>
       <div class="chat-box" ref="chatBox">
         <div v-for="(message, index) in messages" :key="index" :class="['message', message.sender]">
           <p>{{ message.text }}</p>
@@ -17,11 +20,16 @@
 <script setup>
 import axios from "axios";
 import { ref, watch, nextTick, onMounted } from "vue";
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { useAccountStore } from "@/stores/accountStore";
 
-const route = useRoute()
+const route = useRoute();
+const router = useRouter();
 const botType = ref(route.params.type);
+
+const goToFortuneView = () => {
+  router.push({name: 'FortuneView'});
+};
 
 const accountStore = useAccountStore();
 const user = ref(null)
@@ -378,6 +386,7 @@ h1 {
 .chat-container {
   display: flex;
   flex-direction: column;
+  position: relative;
   gap: 16px;
   width: 80%;
   background: #F5F9F6;
@@ -465,6 +474,39 @@ button {
 
 button:hover {
   background: #1B5E20;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+}
+
+.close-button button {
+  background: #2E8B57;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.close-button button:hover {
+  background: #1B5E20;
+  transform: scale(1.1);
+}
+
+.close-button button:active {
+  transform: scale(0.95);
 }
 
 ::-webkit-scrollbar {
