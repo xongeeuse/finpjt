@@ -28,8 +28,26 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import axios from "axios";
+
+const props = defineProps({
+  amount: {
+    type: Number,
+    required: true,
+  }
+})
+
+watch(
+  () => props.amount,
+  (newAmount) => {
+    amount.value = newAmount;
+  }
+)   
+
+const amount = ref(props.amount)
+
+console.log(amount.value)
 
 // Chat messages array
 const messages = ref([
@@ -110,12 +128,11 @@ const fetchFortune = async () => {
 
   try {
     const response = await axios.post(
-      "https://api.openai.com/v1/chat/completions",
+      "https://api.groq.com/openai/v1/chat/completions",
       {
-        model: "gpt-4o-mini",
+        model: "gemma2-9b-it",
         messages: [{ role: "user", content: prompt }],
-        max_tokens: 16384,
-        temperature: 0.7,
+        max_tokens: 1000
       },
       {
         headers: {
