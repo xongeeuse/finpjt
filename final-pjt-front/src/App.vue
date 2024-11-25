@@ -24,15 +24,15 @@
 
     <div class="auth-section">
       <div v-if="accountStore.isLogin" class="user-info">
-        <LoginUsername class="user-name"/>
-        <button class="logout-btn" @click="logOut">로그아웃</button>
+        <LoginUsername class="user-name" />
+        <button class="logout-btn" @click="logOut">Logout</button>
       </div>
       <div v-else class="login-links">
         <!-- <RouterLink class="nav-link signup-btn" :to="{ name: 'SignupView' }"
           >회원가입</RouterLink
         > -->
         <a href="#" class="nav-link login-btn" @click.prevent="toggleLoginModal"
-          >로그인</a
+          >Login</a
         >
       </div>
     </div>
@@ -40,7 +40,11 @@
 
   <RouterView />
 
-  <div v-if="accountStore.isLoginModalOpen" class="modal-overlay" @click="toggleLoginModal">
+  <div
+    v-if="accountStore.isLoginModalOpen"
+    class="modal-overlay"
+    @click="toggleLoginModal"
+  >
     <div class="modal-content" @click.stop>
       <button class="close-icon" @click="toggleLoginModal">×</button>
       <Login @closeModal="toggleLoginModal" />
@@ -65,7 +69,7 @@ const isLoginModalOpen = ref(false);
 
 // 로그인 모달 열기/닫기 함수
 const toggleLoginModal = () => {
-  accountStore.setLoginModalOpen(!accountStore.isLoginModalOpen) // 모달 상태 토글
+  accountStore.setLoginModalOpen(!accountStore.isLoginModalOpen); // 모달 상태 토글
 };
 // const toggleLoginModal = () => {
 //   isLoginModalOpen.value = !isLoginModalOpen.value; // 모달 상태 토글
@@ -82,19 +86,21 @@ const goToMain = function () {
 
 <style scoped>
 .nav-container {
-  padding: 15px 30px;
-  background-color: #f5f9f7;
+  padding: 20px 50px;
+  background-color: #f5f9f7; /* 기존 #f5f9f7에서 변경 */
   box-shadow: 0 2px 12px rgba(46, 139, 87, 0.1);
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  position: sticky;
+  /* justify-content: space-between; */
+  position: sticky; /* sticky에서 fixed로 변경 */
+  width: 100vw;
   top: 0;
   z-index: 1000;
 }
 
 .logo-section {
-  flex: 0 0 auto;
+  flex: 1; /* 변경: 로고 섹션이 남은 공간의 1을 차지 */
+  margin-left: 20px;
 }
 
 .logo-img {
@@ -119,10 +125,12 @@ const goToMain = function () {
 }
 
 .nav-links {
+  flex: 2; /* 변경: 네비게이션 링크가 남은 공간의 2를 차지 */
   display: flex;
   gap: 20px;
   align-items: center;
-  margin: 0 30px;
+  justify-content: center; /* 추가: 내부 항목들을 중앙 정렬 */
+  margin: 0;
 }
 
 .nav-link {
@@ -150,12 +158,12 @@ const goToMain = function () {
 }
 
 .nav-link:hover::before {
-  width: 80%;
+  /* width: 80%; */
 }
 
 .nav-link:hover {
-  background-color: #e8f5e9;
-  color: #1a5235;
+  /* background-color: #e8f5e9; */
+  /* color: #1a5235; */
 }
 
 .router-link-active {
@@ -168,8 +176,10 @@ const goToMain = function () {
 }
 
 .auth-section {
+  flex: 1; /* 변경: 인증 섹션이 남은 공간의 1을 차지 */
   display: flex;
   align-items: center;
+  justify-content: flex-end; /* 추가: 오른쪽 정렬 */
   gap: 15px;
 }
 
@@ -177,7 +187,7 @@ const goToMain = function () {
   /* background-color: #2e8b57; */
   color: #2e8b57;
   border: 2px solid #2e8b57;
-  padding: 3px;
+  padding: 5px;
   border-radius: 20px;
   font-weight: 600;
   cursor: pointer;
@@ -186,7 +196,8 @@ const goToMain = function () {
 }
 
 .logout-btn:hover {
-  background-color: white;
+  background-color: #2e8b57;
+  color: #f5f9f7;
 }
 
 .user-name {
@@ -208,6 +219,7 @@ const goToMain = function () {
 
 .login-btn:hover,
 .signup-btn:hover {
+  color: white;
   background-color: #1a5235;
   transform: translateY(-2px);
 }
