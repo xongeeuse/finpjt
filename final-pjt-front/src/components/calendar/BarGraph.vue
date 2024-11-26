@@ -21,6 +21,8 @@ const props = defineProps({
   },
 });
 
+// console.log(props.yearMonth)
+
 const date = ref(`${props.yearMonth}`);
 
 const barGraphData = ref([])
