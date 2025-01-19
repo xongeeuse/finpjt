@@ -1,15 +1,12 @@
 <div align="center">
 
-<a href="" target="_blank" title="Go to our website"><img width="196px"> <h1>🐸</h1> </a>
+# 🐸 Moneytto 🐸
 <a name="readme-top"></a>
-
-# Moneytto
-
+![alt text](final-pjt-front/src/assets/logo.jpg)
 소비의 시각화부터 맞춤형 재정 조언까지, 당신의 금융친구 **머니또**!
 
-![alt text](screenshots/main_beforelogin.png)
-
 </div>
+</br>
 
 ### 프로젝트 개요
 
@@ -17,17 +14,15 @@
 - 기간 : 2024.11.18(월) ~ 2024.11.26(화)
 
 <br>
-<br>
 
 ### 🦾 팀 소개
 
 | 송지영                                      | 손채이                                       |
 | ------------------------------------------- | -------------------------------------------- |
-| <a href="https://github.com/xongeeuse"></a> | <a href="https://github.com/chaeyi0318"></a> |
+| <a href="https://github.com/xongeeuse">github</a> | <a href="https://github.com/chaeyi0318">github</a> |
 | 팀장                                         | 팀원                              |
 |                                             |                                              |
 
-<br>
 <br>
 
 ### ERD
@@ -52,58 +47,71 @@
 
 ### 프로젝트 소개
 #### 메인
+- 로그인 전
 ![alt text](screenshots/main_beforelogin.png)
 
-#### 회원 가입 + 추가 정보 입력
+- 회원 가입 및 추가 정보 입력 후 자동 로그인
 ![alt text](screenshots/signup.png)
 ![alt text](screenshots/additional_info.png)
 ![alt text](screenshots/additional_info_2.png)
 
-#### 로그인 후
+- 로그인 후
 ![alt text](screenshots/main.png)
 
 #### 소비기록
+- 기본 캘린더 화면(좌측 상단에서 해당 월의 예산 설정)
 ![alt text](screenshots/calendar_default.png)
-기본 달력 화면
+
+- 캘린더의 날짜 클릭 시 해당 날짜의 소비 기록 작성 페이지 이동
+![alt text](screenshots/post.png)
+
+- 작성 기록 상세 페이지 및 댓글
+![alt text](screenshots/post_detail.png) 
+![alt text](screenshots/post_comment.png)
+
+- 소비 기록 작성 후(물결의 높이를 통해 예산 대비 소비 현황 쉽게 파악 가능)
 ![alt text](screenshots/calendar.png)
-소비 기록 작성 후(물결의 높이를 통해 예산 대비 소비 현황 쉽게 파악 가능)
+
+- 월간 소비 기록 분석 제공
 ![alt text](screenshots/calendar_report.png)
-월간 소비 기록 분석
 
 #### 적금 검색
+- 적금 상품 검색
 ![alt text](screenshots/saving_search_2.png)
+- 검색 결과 페이지네이션 및 정렬 옵션 제공
 ![alt text](screenshots/saving_search_list.png)
-검색 결과 정렬 옵션 추가 및 페이지네이션
+- 상품 상세 페이지 및 찜하기 기능
 ![alt text](screenshots/saving_search_detail.png)
-상품 상세 페이지 + 찜하기 기능
 
 #### 적금 추천
+- 화면 우측 상단의 상품 추천받기 클릭
 ![alt text](screenshots/saving_search.png)
-우측 상단의 상품 추천받기 클릭
+- 회원 정보에 작성된 연령 및 금융 정보 기반으로 비슷한 유저가 많이 보유하고 있는 상품 추천 알고리즘 구현
 ![alt text](screenshots/saving_recommend1.png)
 ![alt text](screenshots/saving_recommend2.png)
-회원 정보에 작성된 연령과 금융 정보 기반으로 비슷한 유저가 많이 보유하고 있는 상품 추천 알고리즘 구현
 
-#### AI를 활용한 소비 조언
+#### AI를 활용한 소비 조언 및 금전운 제공
+- Fortune 탭
 ![alt text](screenshots/fortune.png)
+- 상담 서비스 이용 시 포인트 차감
 ![alt text](screenshots/fortune_salmal_popup.png)
-상담 서비스 이용시 포인트 차감
+- 유저의 설정 예산 및 소비 기록 바탕으로 대화 형식을 통한 맞춤형 소비 조언 제공
 ![alt text](screenshots/fortune_salmal_1.png) ![alt text](screenshots/fortune_salmal_2.png) ![alt text](screenshots/fortune_salmal_3.png) ![alt text](screenshots/fortune_salmal_4.png)
-유저의 설정 예산 및 소비 기록 바탕으로 대화 형식을 통한 맞춤형 소비 조언 제공
 
-#### AI 활용한 운세
+- 회원정보에 기록된 생년월일 정보 바탕으로 금전운 제공
 ![alt text](screenshots/fortune_1.png) ![alt text](screenshots/fortune_2.png)
-회원정보에 기록된 생년월일 정보 바탕으로 그 금전운세 제공
 
 #### 금융 퀴즈
+- 금융 퀴즈를 통한 포인트 시스템
 ![alt text](screenshots/quiz_2.png) ![alt text](screenshots/quiz.png)
 
-#### 마이 페이지 - 회원정보 수정 및 탈퇴
+#### 마이 페이지
+- 회원정보 수정 및 탈퇴
 ![alt text](screenshots/mypage.png)
 ![alt text](screenshots/profile_update.png)
 ![alt text](screenshots/mypage_withdraw.png)
 
-#### 마이 페이지 - 찜한 적금 및 지난 퀴즈 모아보기
+- 찜한 적금 및 지난 퀴즈 모아보기
 ![alt text](screenshots/mypage_likesavings.png) 
 ![alt text](screenshots/mypage_quiz_record.png)
 
