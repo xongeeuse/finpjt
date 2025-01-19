@@ -26,7 +26,7 @@
 <br>
 
 ### ERD
-![alt text](머니또_ERD.png)
+![alt text](images/머니또_ERD.png)
 
 <br>
 <br>
@@ -96,7 +96,7 @@
 - 상담 서비스 이용 시 포인트 차감
 ![alt text](screenshots/fortune_salmal_popup.png)
 - 유저의 설정 예산 및 소비 기록 바탕으로 대화 형식을 통한 맞춤형 소비 조언 제공
-![alt text](screenshots/fortune_salmal_1.png) ![alt text](screenshots/fortune_salmal_2.png) ![alt text](screenshots/fortune_salmal_3.png) ![alt text](screenshots/fortune_salmal_4.png)
+![alt text](screenshots/fortune_salmal_1.png) ![alt text](screenshots/fortune_salmal_2.png) ![alt text](screenshots/fortune_salmal_3.png)
 
 - 회원정보에 기록된 생년월일 정보 바탕으로 금전운 제공
 ![alt text](screenshots/fortune_1.png) ![alt text](screenshots/fortune_2.png)
