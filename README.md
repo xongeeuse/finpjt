@@ -3,15 +3,17 @@
 <a href="" target="_blank" title="Go to our website"><img width="196px"> <h1>🐸</h1> </a>
 <a name="readme-top"></a>
 
-# 10-pjt
+# Moneytto
 
-소비의 시각화부터 맞춤형 재정 조언까지 당신의 금융친구 머니또!
+소비의 시각화부터 맞춤형 재정 조언까지, 당신의 금융친구 **머니또**!
+
+![alt text](screenshots/main_beforelogin.png)
 
 </div>
 
 ### 프로젝트 개요
 
-- 설명 :
+- 설명 : 삼성청년SW아카데미 1학기 관통 프로젝트
 - 기간 : 2024.11.18(월) ~ 2024.11.26(화)
 
 <br>
@@ -28,18 +30,11 @@
 <br>
 <br>
 
-### 🦿 성과
-
-- 삼성청년SW아카데미 1학기 관통 프로젝트
-
-<br />
-
 ### ERD
 ![alt text](머니또_ERD.png)
 
 <br>
 <br>
-
 
 ### ⚙ 주요 기능
 | **카테고리**        | **기능**           | **설명**                                                                                                                                              |
@@ -54,6 +49,63 @@
 |                     | 금융 퀴즈          | 금융과 관련된 OX 퀴즈를 통해 포인트 획득 가능 / 획득한 포인트는 금융 AI 비서를 이용할 때 사용                                                               |
 
 <br>
+
+### 프로젝트 소개
+#### 메인
+![alt text](screenshots/main_beforelogin.png)
+
+#### 회원 가입 + 추가 정보 입력
+![alt text](screenshots/signup.png)
+![alt text](screenshots/additional_info.png)
+![alt text](screenshots/additional_info_2.png)
+
+#### 로그인 후
+![alt text](screenshots/main.png)
+
+#### 소비기록
+![alt text](screenshots/calendar_default.png)
+기본 달력 화면
+![alt text](screenshots/calendar.png)
+소비 기록 작성 후(물결의 높이를 통해 예산 대비 소비 현황 쉽게 파악 가능)
+![alt text](screenshots/calendar_report.png)
+월간 소비 기록 분석
+
+#### 적금 검색
+![alt text](screenshots/saving_search_2.png)
+![alt text](screenshots/saving_search_list.png)
+검색 결과 정렬 옵션 추가 및 페이지네이션
+![alt text](screenshots/saving_search_detail.png)
+상품 상세 페이지 + 찜하기 기능
+
+#### 적금 추천
+![alt text](screenshots/saving_search.png)
+우측 상단의 상품 추천받기 클릭
+![alt text](screenshots/saving_recommend1.png)
+![alt text](screenshots/saving_recommend2.png)
+회원 정보에 작성된 연령과 금융 정보 기반으로 비슷한 유저가 많이 보유하고 있는 상품 추천 알고리즘 구현
+
+#### AI를 활용한 소비 조언
+![alt text](screenshots/fortune.png)
+![alt text](screenshots/fortune_salmal_popup.png)
+상담 서비스 이용시 포인트 차감
+![alt text](screenshots/fortune_salmal_1.png) ![alt text](screenshots/fortune_salmal_2.png) ![alt text](screenshots/fortune_salmal_3.png) ![alt text](screenshots/fortune_salmal_4.png)
+유저의 설정 예산 및 소비 기록 바탕으로 대화 형식을 통한 맞춤형 소비 조언 제공
+
+#### AI 활용한 운세
+![alt text](screenshots/fortune_1.png) ![alt text](screenshots/fortune_2.png)
+회원정보에 기록된 생년월일 정보 바탕으로 그 금전운세 제공
+
+#### 금융 퀴즈
+![alt text](screenshots/quiz_2.png) ![alt text](screenshots/quiz.png)
+
+#### 마이 페이지 - 회원정보 수정 및 탈퇴
+![alt text](screenshots/mypage.png)
+![alt text](screenshots/profile_update.png)
+![alt text](screenshots/mypage_withdraw.png)
+
+#### 마이 페이지 - 찜한 적금 및 지난 퀴즈 모아보기
+![alt text](screenshots/mypage_likesavings.png) 
+![alt text](screenshots/mypage_quiz_record.png)
 
 ## 🛒 기술 스택
 
